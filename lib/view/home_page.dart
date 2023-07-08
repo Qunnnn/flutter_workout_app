@@ -21,19 +21,31 @@ class HomePage extends StatelessWidget {
           builder: (context, state) {
             return ExpansionPanelList.radio(
               children: state
-                  .map((e) => ExpansionPanelRadio(
-                      value: e,
+                  .map((workout) => ExpansionPanelRadio(
+                      value: workout,
                       headerBuilder: (context, isExpanded) {
-                        return  ListTile(
-                          visualDensity: const VisualDensity(
-                            horizontal: 0, 
-                            vertical: VisualDensity.maximumDensity
-                          ),
-                        leading:const IconButton(onPressed: null, icon: Icon(Icons.edit)),
-                        title: Text(e.title!),
+                        return ListTile(
+                          // visualDensity: const VisualDensity(
+                          //   horizontal: 0,
+                          //   vertical: VisualDensity.maximumDensity,
+                          // ),
+                          leading: const IconButton(
+                              onPressed: null, icon: Icon(Icons.edit)),
+                          title: Text(workout.title!),
                         );
                       },
-                      body: Container()))
+                      body: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: workout.exercises.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: const IconButton(
+                                onPressed: null, icon: Icon(Icons.edit)),
+                            title: Text(workout.exercises[index].title!),
+                          );
+                        },
+                      )))
                   .toList(),
             );
           },

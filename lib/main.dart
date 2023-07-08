@@ -19,10 +19,8 @@ class MyApp extends StatelessWidget {
         create: (context) {
           WorkoutsCubit workoutsCubit = WorkoutsCubit();
           if (workoutsCubit.state.isEmpty) {
-            print('...loading json when state is emty...');
             workoutsCubit.getWorkouts();
           } else {
-            print('...the state is not empty...');
           }
           return workoutsCubit;
         },
