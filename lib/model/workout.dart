@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_workout_app/model/exercise.dart';
 
-class Workout {
+class Workout  {
   final String? title;
   final List<Exercise> exercises;
   const Workout({required this.title, required this.exercises});
@@ -9,9 +10,10 @@ class Workout {
     List<Exercise> exercises = [];
     int index = 0;
     int startTime = 0;
-    for (var ex in (json['exercises'] as Iterable)) {
+    for (var ex in json['exercises']) {
       exercises.add(Exercise.fromJson(ex, index, startTime));
       index++;
+      print('...$index...');
       startTime = exercises.last.prelude! + exercises.last.duration!;
     }
     return Workout(title: json['title'], exercises: exercises);
@@ -21,4 +23,9 @@ class Workout {
         'title': title,
         'exercises': exercises,
       };
+
+  // @override
+  // List<Object?> get props => [title, exercises];
+  // @override
+  // bool get stringify => true;
 }

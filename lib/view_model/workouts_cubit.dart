@@ -10,7 +10,7 @@ class WorkoutsCubit extends Cubit<List<Workout>> {
     final List<Workout> workouts = [];
     final workoutsJson =
         jsonDecode(await rootBundle.loadString('assets/workouts.json'));
-    for (var el in (workoutsJson as Iterable)) {
+    for (var el in workoutsJson ) {
       workouts.add(Workout.fromJson(el));
     }
     emit(workouts);
