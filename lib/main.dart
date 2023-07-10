@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_workout_app/view/home_page.dart';
-import 'package:flutter_workout_app/view_model/workouts_cubit.dart';
+import 'package:flutter_workout_app/view_model/blocs/workouts_cubit/workouts_cubit.dart';
 
 void main() {
   runApp(const MyApp());

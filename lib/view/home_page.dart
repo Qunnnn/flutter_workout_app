@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_workout_app/model/model.dart';
 import 'package:flutter_workout_app/shared/preferences/helpers/format_time.dart';
-import 'package:flutter_workout_app/view_model/workouts_cubit.dart';
+import 'package:flutter_workout_app/view_model/blocs/workouts_cubit/workouts_cubit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
