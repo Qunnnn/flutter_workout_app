@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_workout_app/model/model.dart';
 import 'package:flutter_workout_app/view/home_page.dart';
 import 'package:flutter_workout_app/view_model/workouts_cubit.dart';
 
@@ -15,13 +14,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My Workouts',
+      debugShowCheckedModeBanner: false,
       home: BlocProvider<WorkoutsCubit>(
         create: (context) {
           WorkoutsCubit workoutsCubit = WorkoutsCubit();
           if (workoutsCubit.state.isEmpty) {
             workoutsCubit.getWorkouts();
-          } else {
-          }
+          } else {}
           return workoutsCubit;
         },
         child: const HomePage(),

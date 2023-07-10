@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_workout_app/model/model.dart';
+import 'package:flutter_workout_app/shared/preferences/helpers/format_time.dart';
 import 'package:flutter_workout_app/view_model/workouts_cubit.dart';
 
 class HomePage extends StatelessWidget {
@@ -32,6 +33,9 @@ class HomePage extends StatelessWidget {
                           leading: const IconButton(
                               onPressed: null, icon: Icon(Icons.edit)),
                           title: Text(workout.title!),
+                          trailing: Text(
+                            formatTime(workout.getTotal()),
+                          ),
                         );
                       },
                       body: ListView.builder(
@@ -40,9 +44,15 @@ class HomePage extends StatelessWidget {
                         itemCount: workout.exercises.length,
                         itemBuilder: (context, index) {
                           return ListTile(
-                            leading: const IconButton(
-                                onPressed: null, icon: Icon(Icons.edit)),
+                            visualDensity: const VisualDensity(
+                              horizontal: VisualDensity.maximumDensity,
+                              vertical: -1.5,
+                            ),
+                            leading: Text(
+                                formatTime(workout.exercises[index].prelude!)),
                             title: Text(workout.exercises[index].title!),
+                            trailing: Text(
+                                formatTime(workout.exercises[index].duration!)),
                           );
                         },
                       )))

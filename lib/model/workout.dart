@@ -22,6 +22,13 @@ class Workout {
         'title': title,
         'exercises': exercises,
       };
+  int getTotal() {
+    int time = exercises.fold(
+        0,
+        (previousValue, element) =>
+            previousValue + element.prelude! + element.duration!);
+    return time;
+  }
 
   // @override
   // List<Object?> get props => [title, exercises];
