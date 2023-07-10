@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_workout_app/model/model.dart';
 import 'package:flutter_workout_app/shared/preferences/helpers/format_time.dart';
-import 'package:flutter_workout_app/view_model/blocs/workouts_cubit/workouts_cubit.dart';
+import 'package:flutter_workout_app/view_model/cubits/workouts_cubit/workouts_cubit.dart';
+
+import '../view_model/cubits/cubits.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -26,12 +28,14 @@ class HomePage extends StatelessWidget {
                       value: workout,
                       headerBuilder: (context, isExpanded) {
                         return ListTile(
-                          // visualDensity: const VisualDensity(
-                          //   horizontal: 0,
-                          //   vertical: VisualDensity.maximumDensity,
-                          // ),
-                          leading: const IconButton(
-                              onPressed: null, icon: Icon(Icons.edit)),
+                          leading: IconButton(
+                              onPressed: () {
+                                BlocProvider.of<WorkoutCubit>(context)
+                                    .editWorkout(
+                                        workout: workout,
+                                        index: state.indexOf(workout));
+                              },
+                              icon: const Icon(Icons.edit)),
                           title: Text(workout.title!),
                           trailing: Text(
                             formatTime(workout.getTotal()),

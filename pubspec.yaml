@@ -17,8 +17,8 @@ dependencies:
   flutter_bloc: 8.1.1
   hydrated_bloc: 8.1.0
   equatable: 2.0.5
-
-  cupertino_icons: ^1.0.2
+  cupertino_icons: 1.0.2
+  numberpicker: 2.1.2
 
 dev_dependencies:
   flutter_test:
