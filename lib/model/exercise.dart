@@ -28,6 +28,8 @@ class Exercise extends Equatable {
         startTime: startTime ?? this.startTime);
   }
 
+  
+
   factory Exercise.fromJson(
           Map<String, dynamic> json, int index, int startTime) =>
       Exercise(

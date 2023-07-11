@@ -24,6 +24,7 @@ class _EditPageState extends State<EditPage> {
               leading: BackButton(
                 onPressed: () {
                   BlocProvider.of<WorkoutCubit>(context).goHome();
+                   
                 },
               ),
               title: InkWell(
