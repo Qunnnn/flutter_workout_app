@@ -39,7 +39,10 @@ class HomePage extends StatelessWidget {
                           trailing: Text(
                             formatTime(workout.getTotal()),
                           ),
-                          onTap: () => !isExpanded ? BlocProvider.of<WorkoutCubit>(context).startWorkout(workout, 0):null,
+                          onTap: () => !isExpanded
+                              ? BlocProvider.of<WorkoutCubit>(context)
+                                  .startWorkout(workout, 0)
+                              : null,
                         );
                       },
                       body: ListView.builder(
@@ -54,7 +57,12 @@ class HomePage extends StatelessWidget {
                             ),
                             leading: Text(
                                 formatTime(workout.exercises[index].prelude!)),
-                            title: Text(workout.exercises[index].title!),
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(workout.exercises[index].title!),
+                              ],
+                            ),
                             trailing: Text(
                                 formatTime(workout.exercises[index].duration!)),
                           );

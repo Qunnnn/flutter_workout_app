@@ -18,7 +18,7 @@ class Workout extends Equatable {
     for (var ex in json['exercises']) {
       exercises.add(Exercise.fromJson(ex, index, startTime));
       index++;
-      startTime = exercises.last.prelude! + exercises.last.duration!;
+      startTime += exercises.last.prelude! + exercises.last.duration!;
     }
     return Workout(title: json['title'], exercises: exercises);
   }
