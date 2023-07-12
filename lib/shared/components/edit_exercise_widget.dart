@@ -27,7 +27,7 @@ class _EditExerciseWidgetState extends State<EditExerciseWidget> {
     //     text: widget.workout!.exercises[widget.exIndex!].title);
     super.initState();
   }
-
+@override
   @override
   Widget build(BuildContext context) {
     return SizedBox(

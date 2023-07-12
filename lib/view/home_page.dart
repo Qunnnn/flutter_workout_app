@@ -39,6 +39,7 @@ class HomePage extends StatelessWidget {
                           trailing: Text(
                             formatTime(workout.getTotal()),
                           ),
+                          onTap: () => !isExpanded ? BlocProvider.of<WorkoutCubit>(context).startWorkout(workout, 0):null,
                         );
                       },
                       body: ListView.builder(

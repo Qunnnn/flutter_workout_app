@@ -40,21 +40,29 @@ class WorkoutsCubit extends HydratedCubit<List<Workout>> {
     state[index] = newWorkout;
     emit(state);
   }
+
   @override
   List<Workout> fromJson(Map<String, dynamic> json) {
     // TODO: implement fromJson
-    List<Workout> workouts = [];
-    json['workouts'].forEach((el) => workouts.add(Workout.fromJson(el)));
-    return workouts;
+    // List<Workout> workouts = [];
+    // json['workouts'].forEach((el) => workouts.add(Workout.fromJson(el)));
+    // print(workouts);
+    // return workouts;
+
+    final List<dynamic> modelsJson = json['workouts'];
+    return modelsJson.map((modelJson) => Workout.fromJson(modelJson)).toList();
   }
 
   @override
   Map<String, dynamic> toJson(List<Workout> state) {
     // TODO: implement toJson
-    var json = {'workouts': []};
-    for (var workout in state) {
-      json['workouts']?.add(workout.toJson());
-    }
-    return json;
+    // var json = {'workouts': []};
+    // for (var workout in state) {
+    //   json['workouts']?.add(workout.toJson());
+    // }
+    // return json;
+
+    final List<dynamic> json = state.map((e) => e.toJson()).toList();
+    return {'workouts': json};
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_workout_app/view/progress_page.dart';
 import 'package:flutter_workout_app/view/view.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
@@ -41,6 +42,8 @@ class MyApp extends StatelessWidget {
               return const HomePage();
             } else if (state is WorkoutEditing) {
               return const EditPage();
+            } else if (state is WorkoutProgress) {
+              return const ProgressPage();
             }
             return Container();
           },
