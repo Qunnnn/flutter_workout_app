@@ -26,6 +26,10 @@ class ProgressPage extends StatelessWidget {
         'workoutProgress': workoutElapsed / workoutTotal,
         'workoutElapsed': workoutElapsed,
         'totalExercise': workout.exercises.length,
+        'exerciseTitle': exercise.title,
+        'nextExerciseTitle': exercise.index! == workout.exercises.length - 1
+            ? 'No more'
+            : workout.exercises[exercise.index! + 1].title,
         'currentExerciseIndex': exercise.index,
         'workoutRemaining': workoutTotal - workoutElapsed,
         'exerciseRemaining': exerciseRemaining,
@@ -49,6 +53,7 @@ class ProgressPage extends StatelessWidget {
           body: Container(
             padding: const EdgeInsets.all(10),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 LinearProgressIndicator(
                   backgroundColor: Colors.blue[100],
@@ -70,14 +75,39 @@ class ProgressPage extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
+                stats['isPrelude']
+                    ? Column(
+                        children: [
+                          const Text(
+                            'Get ready for:',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20),
+                          ),
+                          Text(
+                            stats['exerciseTitle'],
+                            style: const TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )
+                    : Text(
+                        stats['exerciseTitle'],
+                        style: const TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                const SizedBox(
+                  height: 150,
+                ),
                 InkWell(
                   child: Stack(
                     alignment: const Alignment(0, 0),
                     children: [
                       Center(
                         child: SizedBox(
-                          height: 200,
-                          width: 200,
+                          height: 210,
+                          width: 210,
                           child: CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(
                               stats['isPrelude'] ? Colors.red : Colors.blue,
@@ -93,14 +123,13 @@ class ProgressPage extends StatelessWidget {
                             if (state is WorkoutProgress) {
                               BlocProvider.of<WorkoutCubit>(context)
                                   .pausedWorkout();
-                            }else if( state is WorkoutPaused){
+                            } else if (state is WorkoutPaused) {
                               BlocProvider.of<WorkoutCubit>(context)
                                   .resumeWorkout();
                             }
                           },
                           child: SizedBox(
-                            height: 303,
-                            width: 300,
+                            height: 288,
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 20),
                               child: Image.asset('assets/stopwatch.png'),
@@ -110,7 +139,18 @@ class ProgressPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  'Next exercise: ${stats['nextExerciseTitle']}',
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
               ],
             ),
           ),

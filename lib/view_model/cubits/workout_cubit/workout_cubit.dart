@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_workout_app/model/model.dart';
 import 'package:flutter_workout_app/view_model/cubits/workout_cubit/workout_state.dart';
@@ -26,16 +25,16 @@ class WorkoutCubit extends Cubit<WorkoutState> {
         emit(WorkoutProgress(workout: wp.workout!, elapsed: wp.elapsed! + 1));
       } else {
         _timer!.cancel();
-        // Wakelock.disable();
+         Wakelock.disable();
         emit(const WorkoutInitial());
       }
     }
   }
 
-  startWorkout(Workout workout, int? time) {
-    // Wakelock.enable();
-    if (time != null) {
-      emit(WorkoutProgress(workout: workout, elapsed: time));
+  startWorkout(Workout workout, int? startTime) {
+     Wakelock.enable();
+    if (startTime != null) {
+      emit(WorkoutProgress(workout: workout, elapsed: startTime));
     } else {
       emit(WorkoutProgress(workout: workout, elapsed: 0));
     }
