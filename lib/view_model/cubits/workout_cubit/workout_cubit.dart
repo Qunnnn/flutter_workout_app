@@ -35,10 +35,16 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   startWorkout(Workout workout, int? time) {
     // Wakelock.enable();
     if (time != null) {
-       emit(WorkoutProgress(workout: workout, elapsed: time));
+      emit(WorkoutProgress(workout: workout, elapsed: time));
     } else {
       emit(WorkoutProgress(workout: workout, elapsed: 0));
     }
     _timer = Timer.periodic(const Duration(seconds: 1), onTick);
   }
+
+  pausedWorkout() =>
+      emit(WorkoutPaused(workout: state.workout!, elapsed: state.elapsed));
+
+  resumeWorkout() =>
+      emit(WorkoutProgress(workout: state.workout!, elapsed: state.elapsed!));
 }

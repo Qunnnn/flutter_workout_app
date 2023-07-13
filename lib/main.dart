@@ -44,6 +44,8 @@ class MyApp extends StatelessWidget {
               return const EditPage();
             } else if (state is WorkoutProgress) {
               return const ProgressPage();
+            } else if (state is WorkoutPaused) {
+              return const ProgressPage();
             }
             return Container();
           },

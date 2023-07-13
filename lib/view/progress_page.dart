@@ -55,21 +55,20 @@ class ProgressPage extends StatelessWidget {
                   minHeight: 10,
                   value: stats['workoutProgress'],
                 ),
-                DotsIndicator(
-                  dotsCount: stats['totalExercise'],
-                  position: stats['currentExerciseIndex'],
-                ),
                 Padding(
                   padding: const EdgeInsets.all(5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(formatTime(stats['workoutElapsed'])),
+                      DotsIndicator(
+                        dotsCount: stats['totalExercise'],
+                        position: stats['currentExerciseIndex'],
+                      ),
                       Text('-' + formatTime(stats['workoutRemaining'])),
                     ],
                   ),
                 ),
-                Text(stats['currentExerciseIndex'].toString()),
                 const Spacer(),
                 InkWell(
                   child: Stack(
@@ -77,8 +76,8 @@ class ProgressPage extends StatelessWidget {
                     children: [
                       Center(
                         child: SizedBox(
-                          height: 220,
-                          width: 220,
+                          height: 200,
+                          width: 200,
                           child: CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(
                               stats['isPrelude'] ? Colors.red : Colors.blue,
@@ -89,18 +88,26 @@ class ProgressPage extends StatelessWidget {
                         ),
                       ),
                       Center(
-                        child: SizedBox(
-                          height: 320,
-                          width: 320,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 20),
-                            child: Image.asset('assets/stopwatch.png'),
+                        child: InkWell(
+                          onTap: () {
+                            if (state is WorkoutProgress) {
+                              BlocProvider.of<WorkoutCubit>(context)
+                                  .pausedWorkout();
+                            }else if( state is WorkoutPaused){
+                              BlocProvider.of<WorkoutCubit>(context)
+                                  .resumeWorkout();
+                            }
+                          },
+                          child: SizedBox(
+                            height: 303,
+                            width: 300,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 20),
+                              child: Image.asset('assets/stopwatch.png'),
+                            ),
                           ),
                         ),
                       ),
-                      Center(
-                        child: Text(stats['exerciseProgress'].toString()),
-                      )
                     ],
                   ),
                 )

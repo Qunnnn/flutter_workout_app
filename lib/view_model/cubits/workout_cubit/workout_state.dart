@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_workout_app/model/model.dart';
 
@@ -27,6 +29,15 @@ class WorkoutEditing extends WorkoutState {
 
 class WorkoutProgress extends WorkoutState {
   const WorkoutProgress({required Workout workout, required int? elapsed})
+      : super(workout: workout, elapsed: elapsed);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [workout, elapsed];
+}
+
+class WorkoutPaused extends WorkoutState {
+  const WorkoutPaused({required Workout workout, required int? elapsed})
       : super(workout: workout, elapsed: elapsed);
 
   @override
