@@ -149,10 +149,6 @@ class _EditExerciseWidgetState extends State<EditExerciseWidget> {
                                   .saveWorkout(
                                       workout: widget.workout!,
                                       index: widget.index);
-                              BlocProvider.of<WorkoutCubit>(context)
-                                  .editWorkout(
-                                      workout: widget.workout!,
-                                      index: widget.index);
                               Navigator.pop(context);
                             });
                           }
